@@ -21,5 +21,36 @@
  */
 
 return array(
+  'active' => 'mysqli',     // DBの選択
 
+  'pdo' => array(
+      'type'           => 'pdo',
+      'connection'     => array(
+          'dsn'        => 'mysql:host=localhost;dbname=framework',
+          'username'       => 'root',
+          'password'       => 'root',
+          'persistent'     => false,
+          'compress'       => false,
+      ),
+      'table_prefix' => '',
+      'charset'      => 'utf8',
+      'caching'      => false,
+      'profiling'    => true,
+  ),
+
+  'mysqli' => array(
+      'type'           => 'mysqli',
+      'connection'     => array(
+          'hostname' => 'localhost',  // ココから
+          'database' => 'framework',
+          'username'       => 'root',
+          'password'       => 'root',   // ココまで
+          'persistent'     => false,
+          'compress'       => false,
+      ),
+      'table_prefix' => '',
+      'charset'      => 'utf8',   // ココ
+      'caching'      => false,
+      'profiling'    => true,
+  ),
 );
