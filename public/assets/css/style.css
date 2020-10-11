@@ -6,6 +6,7 @@ html, body {
   line-height: 1.6;
 }
 a {
+  color: #666;
   text-decoration: none;
   transition: .5s; 
 }
@@ -13,6 +14,11 @@ a {
 ul, li{
   list-style: none;
   padding: 0;
+}
+img{
+  width: 100%;
+  vertical-align: bottom;
+  object-fit: cover;
 }
 
 /* header ---------------------- */
@@ -24,8 +30,16 @@ ul, li{
 }
 .header__title{
   margin-left: 20%;
+  display: flex;
+  justify-content: center;
+}
+.header__title-logo{
+  width: 50px;
+  padding-top: 5px;
+}
+.header__title-foot{
   font-size: 32px;
-
+  
 }
 .header__nav{
   margin-right: 20%;
