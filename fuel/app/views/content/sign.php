@@ -1,4 +1,4 @@
 <div>
   here is the content!!
-  <?php echo $data; ?>
+  <?php //echo $data; ?>
 </div>

@@ -4,8 +4,69 @@
 
   class Controller_Signup extends Controller
   {
+    const PASS_LENGTH_MIN = 6;
+    const PASS_LENGTH_MAX = 20;
+
     public function action_index()
     {
+      $error = '';
+      $formData = '';
+
+      $form = Fieldset::forge('signupform');  // Fieldsetクラス - formの生成（formクラス）やバリデーション（validationクラス）をしてくれる。 バリデーションだけやって欲しい場合は validationクラスだけ使う
+
+      $form->add('username', 'ユーザー名', array('type' => 'text', 'placeholder' => 'ユーザー名'))    // name属性, label, type属性, placeholder　 あとは ->add_rule() でバリデーションを付けていく
+          ->add_rule('required')
+          ->add_rule('min_length', 1)
+          ->add_rule('max_length', 255);
+
+      $form->add('email', 'Email', array('type' => 'text', 'placeholder' => 'Email'))
+          ->add_rule('required')
+          ->add_rule('min_length', 1)
+          ->add_rule('max_length', 255);
+          
+      $form->add('password', 'Password', array('type' => 'password', 'placeholder' => 'パスワード'))
+          ->add_rule('required')
+          ->add_rule('min_length', self::PASS_LENGTH_MIN)   // クラス定数を使う場合は self::
+          ->add_rule('max_length', self::PASS_LENGTH_MAX);
+
+      $form->add('password_re', 'Password（再入力）', array('type' => 'password', 'placeholder' => 'パスワード（再入力）'))
+          ->add_rule('match_field', 'password')     // ->add_rule(match_field, ) は使うときは必ず最初につける
+          ->add_rule('required')
+          ->add_rule('min_length', self::PASS_LENGTH_MIN)
+          ->add_rule('max_length', self::PASS_LENGTH_MAX);
+
+      $form->add('submit', '', array('type' => 'submit', 'value' => '登録する'));
+
+      // Input::method() でHTTPメソッドが返ってくるので、POSTかどうかを確認
+      if(Input::method() === 'POST'){
+
+        $val = $form->validation();   // バリデーションインスタンスを取得
+        if($val->run()){
+          $formData = $val->validated();
+
+          $auth = Auth::instance();
+          if($auth->create_user($formData['username'], $formData['password'], $formData['email'])){
+            // メッセージ格納
+            Session::set_flash('sucMsg', 'ユーザー登録が完了しました');
+            // リダイレクト
+            Response::redirect('member/mypage');
+          
+          }else{
+            // エラー格納
+            $error = $val->error();
+            // メッセージ格納
+            Session::set_flash('errMsg', 'ユーザー登録に失敗しました。時間を置いてから再度やり直してください');  
+          }
+        }else{
+          // エラー格納
+          $error = $val->error();
+          // メッセージ格納
+          Session::set_flash('errMsg', 'ユーザー登録に失敗しました。時間を置いてから再度やり直してください');
+        }
+        // フォームにPOSTされた値をセット
+        $form->repopulate();
+      }
+
       $view = View::forge('temp/index');
 
       $view->set('head', View::forge('temp/head'));   // temp/index上の変数$headに Viewメソッドで生成したオブジェクト temp/head を渡している
@@ -15,8 +76,11 @@
 
       $view->set_global('title', 'signup form');
 
+      $view->set_global('signupform', $form->build(''), false);
+      
+
       //$result = Post::get_results();
-      $view->set_global('data', Post::get_results()); // 変数$content(content/sign)上にある、変数$data に　Postモデルのget_results()メソッドで取得した値を渡している
+      //$view->set_global('data', Post::get_results()); // 変数$content(content/sign)上にある、変数$data に　Postモデルのget_results()メソッドで取得した値を渡している
       
       return $view;
     }
