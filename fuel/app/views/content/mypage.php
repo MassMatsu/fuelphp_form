@@ -1,4 +1,7 @@
 <div>
-  here is the mypage!
-  <?php //echo $formData['username']; ?>
+  <h1>
+    こんにちは! &nbsp; 
+    <?php echo Session::get('username'); ?>  
+    さん
+  </h1>
 </div>

@@ -14,29 +14,29 @@
 
       $form = Fieldset::forge('signupform');  // Fieldsetクラス - formの生成（formクラス）やバリデーション（validationクラス）をしてくれる。 バリデーションだけやって欲しい場合は validationクラスだけ使う
 
-      $form->add('username', 'ユーザー名', array('type' => 'text', 'placeholder' => 'ユーザー名'))    // name属性, label, type属性, placeholder あとは ->add_rule() でバリデーションを付けていく
+      $form->add('username', 'ユーザー名', array('type' => 'text', 'placeholder' => 'username', 'autocomplete' => 'off'))    // name属性, label, type属性, placeholder あとは ->add_rule() でバリデーションを付けていく
           ->add_rule('required')
           ->add_rule('min_length', 1)
           ->add_rule('max_length', 255);
 
-      $form->add('email', 'Email', array('type' => 'text', 'placeholder' => 'Email'))
+      $form->add('email', 'Email', array('type' => 'text', 'placeholder' => 'email'))
           ->add_rule('required')
           ->add_rule('min_length', 1)
           ->add_rule('max_length', 255)
           ->add_rule('valid_email');
           
-      $form->add('password', 'Password', array('type' => 'password', 'placeholder' => 'パスワード'))
+      $form->add('password', 'Password', array('type' => 'password', 'placeholder' => 'password'))
           ->add_rule('required')
           ->add_rule('min_length', self::PASS_LENGTH_MIN)   // クラス定数を使う場合は self::
           ->add_rule('max_length', self::PASS_LENGTH_MAX);
 
-      $form->add('password_re', 'Password（再入力）', array('type' => 'password', 'placeholder' => 'パスワード（再入力）'))
+      $form->add('password_re', 'Password（再入力）', array('type' => 'password', 'placeholder' => 'password（再入力）'))
           ->add_rule('match_field', 'password')     // ->add_rule(match_field, ) は使うときは必ず最初につける
           ->add_rule('required')
           ->add_rule('min_length', self::PASS_LENGTH_MIN)
           ->add_rule('max_length', self::PASS_LENGTH_MAX);
 
-      $form->add('submit', '', array('type' => 'submit', 'value' => '登録する'));
+      $form->add('submit', '', array('type' => 'submit', 'value' => 'sign up', 'class' => 'form__btn'));
 
       // Input::method() でHTTPメソッドが返ってくるので、POSTかどうかを確認
       if(Input::method() === 'POST'){
@@ -49,6 +49,7 @@
           if($auth->create_user($formData['username'], $formData['password'], $formData['email'])){
             //メッセージ格納
             Session::set_flash('sucMsg', 'ユーザー登録が完了しました');
+            Session::set('username', $formData['username']);
             // リダイレクト
             Response::redirect('member/mypage');
           

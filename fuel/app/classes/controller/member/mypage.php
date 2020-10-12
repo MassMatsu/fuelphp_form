@@ -7,7 +7,7 @@ class Controller_Member_Mypage extends Controller
     $view = View::forge('temp/index');
 
     $view->set('head', View::forge('temp/head'));
-    $view->set('header', View::forge('temp/header'));
+    $view->set('header', View::forge('member/header'));
     $view->set('content', View::forge('content/mypage'));
     $view->set('footer', View::forge('temp/footer'));
 

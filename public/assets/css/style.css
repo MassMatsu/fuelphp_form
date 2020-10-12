@@ -83,8 +83,64 @@ img{
 }
 
 /* signup.php ----------------------------------------*/
+.form__heading{
+  text-align: center;
+  font-size: 2rem;
+}
+table{
+  width: 100%;
+  font-size: 20px;
+}
+.ctn__form{
+  width: 70%;
+  margin: 75px auto;
+}
+tbody td{
+  height: 50px;
+}
 
+label{
+  font-size: 16px;
+}
 
+input[type="text"],input[type="password"],input[type="email"],textarea{
+  /* background: #f5f4f3; */
+  border: 1px solid #f5f4f3;
+  border-radius: 5px;
+  width: 120%;
+  font-size: 16px;
+  padding: 15px 15px;
+  box-sizing: border-box;
+  margin-left: -20%;
+}
+input[type="text"],input[type="password"],input[type="email"]:focus{
+  border: 1px solid rgba(90, 0, 128, 0.55);
+  outline: 0;
+}
+
+.area-error-msg{
+  color: red;
+}
+
+input[type="submit"] {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: -40px;
+  background: #3d393877;
+  color: white;
+  /* float: right; */
+  text-align: center;
+  width: 150px;
+  font-size: 1em;
+}
+input[type="submit"]:hover{
+  cursor: pointer;
+  background: #3d3938c4;
+  transition: .5s;
+}
 
 /* mypage.php ----------------------------------------*/
 
