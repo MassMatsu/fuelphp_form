@@ -1,5 +1,7 @@
 /* base ---------------------*/
 html, body {
+  padding: 0;
+  margin: 0;
   width: 100%;
   color: #666;
   font-size: 16px;
@@ -52,16 +54,48 @@ img{
   padding-left: 30px;
   font-size: 24px;
 }
+
+.alert__msg{
+  display: none;
+  height: 60px;
+  line-height: 60px;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+}
+.alert__msg.success{
+  background: rgba(0, 153, 255, 0.824);
+  color: #ffffff
+}
+.alert__msg.err{
+  background: rgba(255, 0, 0, 0.824);
+  color: #ffffff
+}
+
+
+
+/* content ----------------------------------------- */
 .content{
   width: 50%;
   margin: 0 auto;
-
 }
+
+/* signup.php ----------------------------------------*/
+
+
+
+/* mypage.php ----------------------------------------*/
+
+/* footer ------------------------------------------- */
 .footer{
+  width: 100%;
   height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: rgba(90, 0, 128, 0.55);
 }
 
 

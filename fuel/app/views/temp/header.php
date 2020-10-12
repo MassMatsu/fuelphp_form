@@ -1,3 +1,22 @@
+<?php 
+$sucMsg = Session::get_flash('sucMsg');
+if(!empty($sucMsg)):
+?>
+  <div class="alert__msg success js-toggle-msg">
+    <?php echo $sucMsg; ?>
+  </div>
+
+<?php endif; ?>
+
+<?php 
+$errMsg = Session::get_flash('errMsg');
+if(!empty($errMsg)):
+?>
+  <div class="alert__msg err js-toggle-msg">
+    <?php echo $errMsg; ?>
+  </div>
+
+<?php endif; ?> 
 
 <header class="header">
   <div class="header__title">
