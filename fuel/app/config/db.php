@@ -21,7 +21,7 @@
  */
 
 return array(
-  'active' => 'mysqli',     // DBの選択
+  'active' => 'pdo',     // DBの選択
 
   'pdo' => array(
       'type'           => 'pdo',
@@ -36,6 +36,7 @@ return array(
       'charset'      => 'utf8',
       'caching'      => false,
       'profiling'    => true,
+      'identifier'   => '`',        // sql文に予約語と同じワードが使われたときにエラー回避
   ),
 
   'mysqli' => array(
@@ -52,5 +53,6 @@ return array(
       'charset'      => 'utf8',   // ココ
       'caching'      => false,
       'profiling'    => true,
+      'identifier'   => '`',
   ),
 );

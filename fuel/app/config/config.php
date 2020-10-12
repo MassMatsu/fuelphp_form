@@ -142,19 +142,20 @@ return array(
 	 *  The default language.
 	 */
 
-	// 'language' => 'en',
+	 'language' => 'ja',
 
 	/**
 	 *  Fallback language when file isn't available for default language.
 	 */
 
-	// 'language_fallback' => 'en',
+	 'language_fallback' => 'en',
 
 	/**
 	 *  PHP set_locale() setting. Use null to not set.
 	 */
 
 	// 'locale' => 'en_US',
+	'locale' => 'ja_JP.UTF-8',
 
 	/**
 	 * -------------------------------------------------------------------------
@@ -449,7 +450,7 @@ return array(
 	 * -------------------------------------------------------------------------
 	 */
 
-	// 'always_load' => array(
+	 'always_load' => array(
 		/**
 		 * ---------------------------------------------------------------------
 		 *  These packages are loaded on Fuel's startup.
@@ -467,9 +468,10 @@ return array(
 		 * ---------------------------------------------------------------------
 		 */
 
-		// 'packages' => array(
+		 'packages' => array(
 		// 	// 'orm',
-		// ),
+			'auth',
+		 ),
 
 		/**
 		 * ---------------------------------------------------------------------
@@ -531,5 +533,5 @@ return array(
 		 */
 
 		// 'language' => array(),
-	// ),
+	 ),
 );
