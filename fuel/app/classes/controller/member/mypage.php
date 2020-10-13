@@ -2,15 +2,15 @@
 
 //use \Model\Post;
 
-class Controller_Member_Mypage extends Controller
+class Controller_Member_Mypage extends Controller_Members
 {
   public function action_index()
   {
 
-    if(!Auth::check()){
-      //Response::redirect(('welcome/index'));
-      Response::redirect(('signup/index'));
-    }
+    // if(!Auth::check()){
+      
+    //   Response::redirect(('signup/index'));
+    // }
 
     $view = View::forge('temp/index');
 
