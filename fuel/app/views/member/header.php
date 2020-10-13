@@ -30,7 +30,7 @@ if(!empty($errMsg)):
   </div>
   <nav class="header__nav">
     <ul class="header__list">
-      <li class="item"><?php echo Html::anchor('signup/index', 'logout'); ?> </li>
+      <li class="item"><?php echo Html::anchor('member/logout', 'logout'); ?> </li>
     </ul>   
   </nav>
 </header>

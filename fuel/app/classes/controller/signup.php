@@ -47,13 +47,27 @@
 
           $auth = Auth::instance();
           if($auth->create_user($formData['username'], $formData['password'], $formData['email'])){
-            //メッセージ格納
+            // メッセージ格納
             Session::set_flash('sucMsg', 'ユーザー登録が完了しました');
+            // ログイン認証用のユーザー情報を格納
             Session::set('username', $formData['username']);
-            // リダイレクト
-            Response::redirect('member/mypage');
-          
+            Session::set('email', $formData['email']);
+            Session::set('password', $formData['password']);
+
+            if(Auth::login($formData['username'], $formData['password'])){
+             
+              // リダイレクト
+              Response::redirect('member/mypage');
+            }else{
+              // エラー格納
+              $error = $val->error();   // エラー内容を変数に格納
+              // メッセージ格納
+              Session::set_flash('errMsg', 'ユーザー登録に失敗しました。時間を置いてから再度やり直してください');    
+            }
+              
           }else{
+            // エラー格納
+            $error = $val->error();   // エラー内容を変数に格納
             // メッセージ格納
             Session::set_flash('errMsg', 'ユーザー登録に失敗しました。時間を置いてから再度やり直してください');  
           }
@@ -79,7 +93,7 @@
       $view->set_global('signupform', $form->build(''), false); // $form->build('')で入力フォームのHTML生成（引数は空文字）、それが変数$signupformに入る。第三引数は false HTMLのタグのサニタイズ防止
       $view->set_global('error', $error);
 
-      $view->set_global('formData', $formData);
+      // $view->set_global('formData', $formData);
       
       //$result = Post::get_results();
       //$view->set_global('data', Post::get_results()); // 変数$content(content/sign)上にある、変数$data に Postモデルのget_results()メソッドで取得した値を渡している

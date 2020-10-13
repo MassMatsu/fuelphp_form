@@ -1,7 +1,7 @@
 <div class="ctn__main">
   <section class="ctn__form">
     <h1 class="form__heading">sign up now</h1>
-    <!-- <?=var_dump($formData); ?> -->
+    <!-- <?php //var_dump($formData); ?> -->
 
     <?php if(!empty($error)):?>
 

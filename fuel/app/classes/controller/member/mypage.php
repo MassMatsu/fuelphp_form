@@ -4,6 +4,12 @@ class Controller_Member_Mypage extends Controller
 {
   public function action_index()
   {
+
+    if(!Auth::check()){
+      //Response::redirect(('welcome/index'));
+      Response::redirect(('signup/index'));
+    }
+
     $view = View::forge('temp/index');
 
     $view->set('head', View::forge('temp/head'));
