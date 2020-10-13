@@ -1,6 +1,6 @@
 <?php 
 
-  use \Model\Post;
+  //use \Model\Post;
 
   class Controller_Signup extends Controller
   {
@@ -36,7 +36,7 @@
           ->add_rule('min_length', self::PASS_LENGTH_MIN)
           ->add_rule('max_length', self::PASS_LENGTH_MAX);
 
-      $form->add('submit', '', array('type' => 'submit', 'value' => 'sign up', 'class' => 'form__btn'));
+      $form->add('submit', '', array('type' => 'submit', 'value' => 'sign up', 'class' => 'signup__btn'));
 
       // Input::method() でHTTPメソッドが返ってくるので、POSTかどうかを確認
       if(Input::method() === 'POST'){
@@ -52,7 +52,7 @@
             // ログイン認証用のユーザー情報を格納
             Session::set('username', $formData['username']);
             Session::set('email', $formData['email']);
-            Session::set('password', $formData['password']);
+            //Session::set('password', $formData['password']);
 
             if(Auth::login($formData['username'], $formData['password'])){
              

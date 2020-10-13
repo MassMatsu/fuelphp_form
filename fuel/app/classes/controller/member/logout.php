@@ -5,7 +5,7 @@ class Controller_Member_logout extends Controller
   {
     // ログイン認証チェック
     if(!Auth::check()){
-      Response::redirect(('signup/index'));
+      Response::redirect('signup/index');
     }
 
 
@@ -16,7 +16,7 @@ class Controller_Member_logout extends Controller
   // }
     // ログアウト！！
     Auth::logout();
-
+    
     // if(Auth::logout()){
     //   Response::redirect('signup/index');
     // }else{
@@ -28,7 +28,7 @@ class Controller_Member_logout extends Controller
     if(!Auth::check()){
       //Session::destroy();
       Session::set_flash('sucMsg', 'ログアウトしました');
-      Response::redirect(('signup/index'));
+      Response::redirect('login/index');
     }
 
     // $view = View::forge('temp/index');
