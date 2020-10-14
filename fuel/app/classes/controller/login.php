@@ -14,13 +14,13 @@ class Controller_login extends Controller
 
     $form = Fieldset::forge('loginform');
 
-    $form->add('email', 'Email', array('type' => 'text', 'placeholder' => 'email'))
+    $form->add('email', 'Email', array('type' => 'text', 'placeholder' => 'email', 'autocomplete' => 'off'))
         ->add_rule('required')
         ->add_rule('min_length', 1)
         ->add_rule('max_length', 255)
         ->add_rule('valid_email');
     
-    $form->add('password', 'Password', array('type' => 'password', 'placeholder' => 'password'))
+    $form->add('password', 'Password', array('type' => 'password', 'placeholder' => 'password', 'autocomplete' => 'off'))
         ->add_rule('required')
         ->add_rule('min_length', self::PASS_LENGTH_MIN)   // クラス定数を使う場合は self::
         ->add_rule('max_length', self::PASS_LENGTH_MAX);
